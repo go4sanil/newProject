@@ -27,18 +27,20 @@ public class LaptopsAndNotebooksPageTest extends TestBase {
 		LaptopsAndNotebooksPage laptopsAndNotebooksPage = myAccountPage.clickOnshowAllLaptopsAndNotebooks();
 		
 		sf.assertEquals(laptopsAndNotebooksPage.getHeadTitleText(), "Laptops & Notebooks");
-		sf.assertEquals(driver.getTitle(), "Laptops & Notebooks");
+		sf.assertEquals(driver.getTitle(), "Laptops & Notebooks","Web page title not matching");
 		
 		laptopsAndNotebooksPage.selectFromSortElementsList();
 		laptopsAndNotebooksPage.clickOnWishListFirstItem();
-				
-		sf.assertEquals(laptopsAndNotebooksPage.getTextFromSuccessAlert(), "Success: You have added Sony VAIO to your wish list!");
-		Thread.sleep(1000);		
+		Thread.sleep(2000);		
+		sf.assertEquals(laptopsAndNotebooksPage.getTextFromSuccessAlert(), "Success: You have added Sony VAIO to your wish list!\n×","Not matching product Sony VAIO");
+			
 		laptopsAndNotebooksPage.clickOnWishListSecondItem();
-		sf.assertEquals(laptopsAndNotebooksPage.getTextFromSuccessAlert(), "Success: You have added MacBook Pro to your wish list!");
-		Thread.sleep(1000);	
+		Thread.sleep(2000);	
+		sf.assertEquals(laptopsAndNotebooksPage.getTextFromSuccessAlert(), "Success: You have added MacBook Pro to your wish list!\n×","Not matching product MacBook Pro");
+		
 		laptopsAndNotebooksPage.clickOnWishListThirdItem();
-		sf.assertEquals(laptopsAndNotebooksPage.getTextFromSuccessAlert(), "Success: You have added MacBook Air to your wish list!");
+		Thread.sleep(2000);	
+		sf.assertEquals(laptopsAndNotebooksPage.getTextFromSuccessAlert(), "Success: You have added MacBook Air to your wish list!\n×","Not matching product MacBook Air");
 		
 		laptopsAndNotebooksPage.clickOnWishListLink();
 		 sf.assertAll();
@@ -46,7 +48,7 @@ public class LaptopsAndNotebooksPageTest extends TestBase {
 
 	@AfterMethod
 	public void teardown() {
-		 //quitBrowser();
+		 quitBrowser();
 	}
 
 }
